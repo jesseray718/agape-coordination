@@ -20,7 +20,7 @@ This is NOT a simulation. It is a functional query engine that:
   6. Runs completely offline, no network needed
 
 SD Card Streaming:
-  The knowledge base lives on /sdcard/openroot/agape_kb/
+  The knowledge base lives on os.environ.get("OPENROOT_BASE", "/sdcard/openroot") + "/"agape_kb/
   Only active nodes load into RAM. Inactive nodes stay on disk.
   This allows the knowledge base to grow unbounded without RAM pressure.
 """
@@ -54,7 +54,7 @@ TOTAL_NODES = BASE ** DEPTH  # 1,296
 # =========================================================
 # STORAGE PATHS (SD Card Backed)
 # =========================================================
-KB_ROOT = "/sdcard/openroot/agape_kb"
+KB_ROOT = "os.environ.get("OPENROOT_BASE", "/sdcard/openroot") + "/"agape_kb"
 POSTULATE_PATH = os.path.join(KB_ROOT, "postulates.json")
 KNOWLEDGE_PATH = os.path.join(KB_ROOT, "knowledge_base.json")
 INDEX_PATH = os.path.join(KB_ROOT, "index.json")
@@ -397,7 +397,7 @@ def execute_query(query: str, verbose: bool = False) -> Dict:
     _fs_override_active = False
     if any(kw in QUERY_LOWER for kw in FS_KEYWORDS):
         try:
-            with open('/sdcard/openroot/agape_kb/repo_snapshot.json') as f:
+            with open('os.environ.get("OPENROOT_BASE", "/sdcard/openroot") + "/"agape_kb/repo_snapshot.json') as f:
                 snap = json.load(f)
             top_dirs = sorted(snap.get('by_directory', {}).items(), key=lambda x: -x[1])[:5]
             top_exts = sorted(snap.get('by_extension', {}).items(), key=lambda x: -x[1])[:5]

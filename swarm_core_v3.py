@@ -38,7 +38,7 @@ BASE_CPU_FREQ = 650  # MHz (Idle)
 # =========================================================
 # MEMORY: NEWTON CHAIN (Persistent Postulates)
 # =========================================================
-POSTULATE_FILE = "/data/data/com.termux/files/home/une/computational_flow/postulates.json"
+POSTULATE_FILE = "os.path.expanduser("~") + "/"une/computational_flow/postulates.json"
 
 def load_postulates():
     if not os.path.exists(POSTULATE_FILE):
