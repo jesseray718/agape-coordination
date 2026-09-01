@@ -12,4 +12,5 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: echo "Replace with actual OpenRabbitAI invocation"
